@@ -2,23 +2,13 @@ import pandas as pd
 import csv
 
 
-
-# # Запись в файл .parquet (по умолчанию используется сжатие snappy)
-# df.to_parquet('data.parquet', engine='pyarrow', index=False)
-
 # Чтение из файла .parquet
 titanic_loaded = pd.read_parquet('titanic.parquet', engine='auto')
-# print(titanic_loaded)
 
-outfile = open('titanic.csv', 'w')
+titanic_csv = open('titanic.csv', 'w')
+writer = csv.writer(titanic_csv, delimiter=';')
+writer.writerow(titanic_loaded.columns)  # Записываем названия столбцов
+writer.writerows(titanic_loaded.values)   # Записываем данные
+titanic_csv.close()
 
-
-
-writer = csv.writer(outfile, delimiter=';', quotechar='"')
-writer.writerows(titanic_loaded)
-
-
-print(outfile)
-
-
-outfile.close()
+print(titanic_loaded)
