@@ -28,11 +28,14 @@ letters_count = letters_ser.value_counts()
 
 
 print(words_df)
+
+words_df.to_csv('lion.csv', sep=';', index=False)
+
 # print(words_df.to_string(index=False))                        #выведет таблицу без индексов
 # print(letters_count)
 
 
-letters_count.head(15).plot.bar(color='#00FF00', edgecolor='black')
+letters_count.head(len(letters_count)).plot.bar(color='#00FF00', edgecolor='black')         #это выведет гистограмму из всех букв и символов
 plt.title('Частота символов в тексте')
 plt.xlabel('Символ')
 plt.ylabel('Количество')
